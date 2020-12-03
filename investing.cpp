@@ -20,8 +20,8 @@
 #include "testing/SimpleTest.h"
 using namespace std;
 
-static const int weekly = 100;
-static const int once = 5200;
+static const int WEEKLY = 100;
+static const int ONCE = 5200;
 static double bitcoinLatestPrice = 16625.10;
 
 
@@ -39,13 +39,13 @@ void conclusion(string dbfile, string dbByMonth){
         cout << endl;
         cout << "You are better off buying Bitcoin weekly!" << endl;
         cout << "You gained: $" << purchasedWeekly - purchasedOnce << " extra." << endl;
-        cout << "Total gains: $" << purchasedWeekly - once << endl;
+        cout << "Total gains: $" << purchasedWeekly - ONCE << endl;
     }
     else{
         cout << endl;
         cout << "You are better off buying Bitcoin all in once!" << endl;
         cout << "You gained: $" << purchasedOnce - purchasedWeekly << " extra." << endl;
-        cout << "Total gains: $" << purchasedOnce - once << endl;
+        cout << "Total gains: $" << purchasedOnce - ONCE << endl;
     }
 
 }
@@ -64,7 +64,7 @@ double weeklyInvesting(string dbfile){
     Vector<string> lines = readFile(dbfile);
     for (int i = 0; i < lines.size(); i++){
         double price = stringToDouble(lines[i]);
-        bitcoin = weekly / price;
+        bitcoin = WEEKLY / price;
         totalBitcoin += bitcoin;
     }
     totalDollars = totalBitcoin * bitcoinLatestPrice;
@@ -85,7 +85,7 @@ double investingOnce(string dbByMonth){
 
     double key = randomInteger(1, 12);
     double price = priceMap[key];
-    double bitcoin = once / price;
+    double bitcoin = ONCE / price;
     double totalDollars = bitcoin * bitcoinLatestPrice;
 
     return totalDollars;
@@ -152,7 +152,7 @@ Vector<string> readFile(string dbfile){
 //    double price = priceMap[key][0];
 //    cout << "Price: " << price << endl;
 
-//    bitcoin = once / price;
+//    bitcoin = ONCE / price;
 //    totalDollars = bitcoin * bitcoinLatestPrice;
 
 //    return totalDollars;
